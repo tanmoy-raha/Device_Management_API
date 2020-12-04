@@ -15,7 +15,7 @@ namespace DeviceMgmt.Model
         DateTime Created_DateTime { get; set; }
         string CreatedBy { get; set; }
     }
-    public class Device : IDevice
+    public class DeviceMgmt_Device : IDevice
     {
         [Key]        
         public string ID { get; set; }

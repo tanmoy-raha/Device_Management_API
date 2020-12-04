@@ -11,7 +11,7 @@ namespace DeviceMgmt.Model
         string Name { get; set; }
         string Address { get; set; }
     }
-    public class Backend : IBackend
+    public class DeviceMgmt_Backend : IBackend
     {
         [Key]
         public string ID { get; set; }

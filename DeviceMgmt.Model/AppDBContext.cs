@@ -9,21 +9,22 @@ namespace DeviceMgmt.Model
 {
     public class ApplicationDBContext : DbContext
     {
-        //const string connectionString = "Server=(localdb)\\mssqllocaldb;Database=ClientDb;Trusted_Connection=True;";
-
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
-        {
-        }
-
-        public DbSet<Backend> Backends { get; set; }
-        public DbSet<Device> Devices { get; set; }
-        public DbSet<DeviceBackend> DeviceBackends { get; set; }
+        
+        public DbSet<DeviceMgmt_Backend> DeviceMgmt_Backends { get; set; }
+        public DbSet<DeviceMgmt_Device> DeviceMgmt_Devices { get; set; }
+        public DbSet<DeviceMgmt_DeviceBackend> DeviceMgmt_DeviceBackends { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Backend>().ToTable("Backend");
-            modelBuilder.Entity<Device>().ToTable("Device");
-            modelBuilder.Entity<DeviceBackend>().ToTable("DeviceBackend");
+            modelBuilder.Entity<DeviceMgmt_Backend>().ToTable("DeviceMgmt_Backend");
+            modelBuilder.Entity<DeviceMgmt_Device>().ToTable("DeviceMgmt_Device");
+            modelBuilder.Entity<DeviceMgmt_DeviceBackend>().ToTable("DeviceMgmt_DeviceBackend");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(
+                @"data source=.;initial catalog=DeviceMgmt;user id=sa;password=123;Integrated Security=True");
         }
     }
 }

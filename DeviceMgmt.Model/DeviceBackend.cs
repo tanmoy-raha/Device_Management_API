@@ -13,20 +13,20 @@ namespace DeviceMgmt.Model
         string Backend_ID { get; set; }
         DateTime Mapped_DateTime { get; set; }
     }
-    public class DeviceBackend : IDeviceBackend
+    public class DeviceMgmt_DeviceBackend : IDeviceBackend
     {
         [Key]
         public string ID { get; set; }
 
 
         [ForeignKey("Device_ID")]
-        public Device Device { get; set; }
+        public DeviceMgmt_Device Device { get; set; }
         public string Device_ID { get; set; }
 
 
 
         [ForeignKey("Backend_ID")]
-        public Backend Backend { get; set; }
+        public DeviceMgmt_Backend Backend { get; set; }
         public string Backend_ID { get; set; }
 
         [DataType(DataType.Date)]

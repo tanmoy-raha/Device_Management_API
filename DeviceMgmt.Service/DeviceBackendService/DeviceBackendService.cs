@@ -25,19 +25,19 @@ namespace DeviceMgmt.Service
             _log.Debug("In constructor");
             _IDeviceCore = objDeviceCore;
         }
-        public IEnumerable<DeviceBackendVM> DoGetAllDevices()
+        public JSONResponse DoGetAllDevices()
         {
             _log.Debug("DoGetAllDevices process start");
             JSONResponse objJSONResponse = new JSONResponse();
             IEnumerable<DeviceBackendVM> lstObj = null;
             try
             {
-                lstObj = _IDeviceCore.DoFetchAllDevice(ref str_catchexception);
+                DataTable dt = _IDeviceCore.DoFetchAllDevice(ref str_catchexception);
 
-                if(lstObj != null)
+                if(dt != null && dt.Rows.Count > 0)
                 {
                     objJSONResponse.status = true;
-                    objJSONResponse.jsondata = JsonConvert.SerializeObject(lstObj);
+                    objJSONResponse.jsondata = JsonConvert.SerializeObject(dt);
                     
                 }
                 else
@@ -61,7 +61,85 @@ namespace DeviceMgmt.Service
             }
             
            
-            return lstObj;
+            return objJSONResponse;
+        }
+
+        public JSONResponse DoGetDevice(string strID)
+        {
+            _log.Debug("DoGetAllDevices process start");
+            JSONResponse objJSONResponse = new JSONResponse();
+            IEnumerable<DeviceBackendVM> lstObj = null;
+            try
+            {
+                DataTable dt = _IDeviceCore.DoFetchDevice(ref str_catchexception, strID);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    objJSONResponse.status = true;
+                    objJSONResponse.jsondata = JsonConvert.SerializeObject(dt);
+
+                }
+                else
+                {
+                    objJSONResponse.status = false;
+                }
+
+                if (str_catchexception.Trim() != string.Empty)
+                {
+                    _log.Error($"DoGetAllDevices  done with exception -  {str_catchexception}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"DoGetAllDevices  has an exception - { ex.Message}");
+            }
+            finally
+            {
+                _log.Debug("DoGetAllDevices process end");
+            }
+
+
+            return objJSONResponse;
+        }
+
+        public JSONResponse DoSaveDeviceDetails(IDeviceRequest deviceRequest)
+        {
+            _log.Debug("DoGetAllDevices process start");
+            JSONResponse objJSONResponse = new JSONResponse();
+            IEnumerable<DeviceBackendVM> lstObj = null;
+            try
+            {
+                DataTable dt = _IDeviceCore.DoSaveDevice(ref str_catchexception, deviceRequest);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    objJSONResponse.status = true;
+                    objJSONResponse.jsondata = JsonConvert.SerializeObject(dt);
+
+                }
+                else
+                {
+                    objJSONResponse.status = false;
+                }
+
+                if (str_catchexception.Trim() != string.Empty)
+                {
+                    _log.Error($"DoGetAllDevices  done with exception -  {str_catchexception}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"DoGetAllDevices  has an exception - { ex.Message}");
+            }
+            finally
+            {
+                _log.Debug("DoGetAllDevices process end");
+            }
+
+
+            return objJSONResponse;
         }
     }
 }

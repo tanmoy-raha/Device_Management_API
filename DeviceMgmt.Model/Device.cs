@@ -10,7 +10,7 @@ namespace DeviceMgmt.Model
         string ID { get; set; }
         string IMEI { get; set; }
         string Model { get; set; }
-        int SIM_Card_Number { get; set; }
+        decimal SIM_Card_Number { get; set; }
         bool Enabled { get; set; }
         DateTime Created_DateTime { get; set; }
         string CreatedBy { get; set; }
@@ -29,7 +29,7 @@ namespace DeviceMgmt.Model
         public string Model { get; set; }
 
         [Required]
-        public int SIM_Card_Number { get; set; }
+        public decimal SIM_Card_Number { get; set; }
 
         [Required]
         public bool Enabled { get; set; }

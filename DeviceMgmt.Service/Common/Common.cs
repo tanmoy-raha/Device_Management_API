@@ -22,8 +22,8 @@ namespace DeviceMgmt.Service.Common
     public class JSONRequestGeneric<T>
     {
         public T jsondata;
-        public string sessionidentity;
-        public int PracticeID;
+        
+        
     }
     /// <summary>
     /// JSONResponse class

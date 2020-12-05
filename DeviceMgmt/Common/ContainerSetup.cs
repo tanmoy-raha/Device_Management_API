@@ -26,7 +26,7 @@ namespace DeviceMgmt.Common
         {
             ResolveDependencyInjectionServices(services);
             ResolveDependencyInjectionCore(services);
-            //ResolveDependencyInjectionModel(services);   
+            ResolveDependencyInjectionModel(services);   
             ConfigureAuth(services);           
         }
 
@@ -69,21 +69,21 @@ namespace DeviceMgmt.Common
                 services.AddScoped(interfaceQ, type);
             }
         }
-        //private static void ResolveDependencyInjectionModel(IServiceCollection services)
-        //{
-        //    var exampleProcessorType = typeof(ModelFactory);
-        //    var types = (from t in exampleProcessorType.GetTypeInfo().Assembly.GetTypes()
-        //                 where t.Namespace == exampleProcessorType.Namespace
-        //                       && t.GetTypeInfo().IsClass
-        //                       && t.GetTypeInfo().GetCustomAttribute<CompilerGeneratedAttribute>() == null
-        //                 select t).ToArray();
+        private static void ResolveDependencyInjectionModel(IServiceCollection services)
+        {
+            var exampleProcessorType = typeof(ModelFactory);
+            var types = (from t in exampleProcessorType.GetTypeInfo().Assembly.GetTypes()
+                         where t.Namespace == exampleProcessorType.Namespace
+                               && t.GetTypeInfo().IsClass
+                               && t.GetTypeInfo().GetCustomAttribute<CompilerGeneratedAttribute>() == null
+                         select t).ToArray();
 
-        //    foreach (var type in types)
-        //    {
-        //        var interfaceQ = type.GetTypeInfo().GetInterfaces().FirstOrDefault();
-        //        services.AddScoped(interfaceQ, type);
-        //    }
-        //}
+            foreach (var type in types)
+            {
+                var interfaceQ = type.GetTypeInfo().GetInterfaces().FirstOrDefault();
+                services.AddScoped(interfaceQ, type);
+            }
+        }
 
     }
 }

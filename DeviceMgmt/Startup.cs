@@ -1,9 +1,5 @@
 using DeviceMgmt.API.SwaggerOptions;
 using DeviceMgmt.Common;
-using DeviceMgmt.Core;
-using DeviceMgmt.Model;
-using DeviceMgmt.Service;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Text;
 
 namespace DeviceMgmt
 {
@@ -68,16 +61,16 @@ namespace DeviceMgmt
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Device Management API", Version = "v1" });
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
-                      Enter 'Bearer' [space] and then your token in the text input below.
-                      \r\n\r\nExample: 'Bearer 12345abcdef'",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
+                //c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                //{
+                //    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                //      Enter 'Bearer' [space] and then your token in the text input below.
+                //      \r\n\r\nExample: 'Bearer 12345abcdef'",
+                //    Name = "Authorization",
+                //    In = ParameterLocation.Header,
+                //    Type = SecuritySchemeType.ApiKey,
+                //    Scheme = "Bearer"
+                //});
 
             });
         }
@@ -92,7 +85,8 @@ namespace DeviceMgmt
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors("CorsPolicy");
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -115,7 +109,7 @@ namespace DeviceMgmt
                 option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
             });
 
-            app.UseCors("CorsPolicy");
+            
 
             //log.Debug("Started Adding Log4Net");
             //// Log4Net startup

@@ -8,7 +8,8 @@ namespace DeviceMgmt.Core
 {
     public interface IDeviceCore
     {
-        IEnumerable<DeviceBackendVM> DoFetchAllDevice(ref string str_catchmessage);
-
+        DataTable DoFetchAllDevice(ref string str_catchmessage);
+        DataTable DoSaveDevice(ref string str_catchmessage, IDeviceRequest deviceRequest);
+        DataTable DoFetchDevice(ref string str_catchmessage, string strID);
     }
 }

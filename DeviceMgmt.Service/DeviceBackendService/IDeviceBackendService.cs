@@ -8,6 +8,8 @@ namespace DeviceMgmt.Service
 {
     public interface IDeviceBackendService
     {
-        IEnumerable<DeviceBackendVM> DoGetAllDevices();
+        JSONResponse DoGetAllDevices();
+        JSONResponse DoSaveDeviceDetails(IDeviceRequest deviceRequest);
+        JSONResponse DoGetDevice(string strID);
     }
 }

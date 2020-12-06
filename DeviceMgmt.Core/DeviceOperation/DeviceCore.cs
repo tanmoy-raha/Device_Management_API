@@ -16,7 +16,7 @@ namespace DeviceMgmt.Core
         public DataTable DoFetchAllDevice(ref string str_catchmessage)
         {
             DataTable objDt = new DataTable();
-            dynamic obj = null;
+            
             try
             {
 
@@ -52,7 +52,7 @@ namespace DeviceMgmt.Core
         public DataTable DoFetchDevice(ref string str_catchmessage, string strID)
         {
             DataTable objDt = new DataTable();
-            dynamic obj = null;
+            
             try
             {
 

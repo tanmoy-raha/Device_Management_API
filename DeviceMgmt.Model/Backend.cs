@@ -7,14 +7,14 @@ namespace DeviceMgmt.Model
 {
     public interface IBackend
     {
-        string ID { get; set; }
+        Guid ID { get; set; }
         string Name { get; set; }
         string Address { get; set; }
     }
     public class DeviceMgmt_Backend : IBackend
     {
         [Key]
-        public string ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "Name cannot be longer than 20 characters.")]

@@ -11,5 +11,6 @@ namespace DeviceMgmt.Service
         JSONResponse DoGetAllDevices();
         JSONResponse DoSaveDeviceDetails(IDeviceRequest deviceRequest);
         JSONResponse DoGetDevice(string strID);
+        JSONResponse DoDeleteDeviceDetails(IDeviceRequest deviceRequest);
     }
 }

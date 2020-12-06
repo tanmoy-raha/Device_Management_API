@@ -52,7 +52,7 @@ namespace DeviceMgmt.API.Controllers.DeviceManagement
         [ValidateFilter]
         public object GetDeviceDetails([FromBody] DeviceRequest obj)
         {
-            _log.Debug("GetAllDeviceDetails process start");
+            _log.Debug("GetDeviceDetails process start");
             JSONResponse objJSONResponse = new JSONResponse();
 
             try
@@ -62,10 +62,10 @@ namespace DeviceMgmt.API.Controllers.DeviceManagement
             catch (Exception ex)
             {
 
-                _log.Error($"GetAllDeviceDetails  has an exception - { ex.Message}");
+                _log.Error($"GetDeviceDetails  has an exception - { ex.Message}");
             }
 
-            _log.Debug("GetAllDeviceDetails process end");
+            _log.Debug("GetDeviceDetails process end");
             return objJSONResponse.jsondata;
         }
 
@@ -87,6 +87,28 @@ namespace DeviceMgmt.API.Controllers.DeviceManagement
             }
 
             _log.Debug("SaveDeviceDetails process end");
+            return objJSONResponse.jsondata;
+        }
+
+
+        [HttpPost]
+        [ValidateFilter]
+        public object DeleteDeviceDetails([FromBody] DeviceRequest obj)
+        {
+            _log.Debug("DeleteDeviceDetails process start");
+            JSONResponse objJSONResponse = new JSONResponse();
+
+            try
+            {
+                objJSONResponse = _IDeviceBackendService.DoDeleteDeviceDetails(obj);
+            }
+            catch (Exception ex)
+            {
+
+                _log.Error($"DeleteDeviceDetails  has an exception - { ex.Message}");
+            }
+
+            _log.Debug("DeleteDeviceDetails process end");
             return objJSONResponse.jsondata;
         }
     }

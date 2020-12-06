@@ -6,7 +6,7 @@ namespace DeviceMgmt.Model
 {
     public interface IDeviceBackendVM
     {
-        string ID { get; set; }
+        Guid ID { get; set; }
         string DeviceIMEI { get; set; }
         string Model { get; set; }
         decimal SIMCardNumber { get; set; }
@@ -16,12 +16,12 @@ namespace DeviceMgmt.Model
 
         string Name { get; set; }
         string Address { get; set; }
-        string BackEndID { get; set; }
+        Guid BackEndID { get; set; }
 
     }
     public class DeviceBackendVM : IDeviceBackendVM
     {
-        public string ID { get; set; }
+        public Guid ID { get; set; }
         public string DeviceIMEI { get; set; }
         public string Model { get; set; }
         public decimal SIMCardNumber { get; set; }
@@ -30,7 +30,7 @@ namespace DeviceMgmt.Model
         public string CreatedBy { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
-        public string BackEndID { get; set; }
+        public Guid BackEndID { get; set; }
 
     }
 }

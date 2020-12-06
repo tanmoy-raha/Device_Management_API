@@ -7,7 +7,7 @@ namespace DeviceMgmt.Model
 {
     public interface IDevice
     {
-        string ID { get; set; }
+        Guid ID { get; set; }
         string IMEI { get; set; }
         string Model { get; set; }
         decimal SIM_Card_Number { get; set; }
@@ -18,7 +18,7 @@ namespace DeviceMgmt.Model
     public class DeviceMgmt_Device : IDevice
     {
         [Key]        
-        public string ID { get; set; }
+        public Guid ID { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "IMEI cannot be longer than 20 characters.")]

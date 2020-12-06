@@ -11,5 +11,6 @@ namespace DeviceMgmt.Core
         DataTable DoFetchAllDevice(ref string str_catchmessage);
         DataTable DoSaveDevice(ref string str_catchmessage, IDeviceRequest deviceRequest);
         DataTable DoFetchDevice(ref string str_catchmessage, string strID);
+        DataTable DoDeleteDeviceDetails(ref string str_catchmessage, IDeviceRequest deviceRequest);
     }
 }

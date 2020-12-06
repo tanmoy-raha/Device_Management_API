@@ -141,5 +141,44 @@ namespace DeviceMgmt.Service
 
             return objJSONResponse;
         }
+
+        public JSONResponse DoDeleteDeviceDetails(IDeviceRequest deviceRequest)
+        {
+            _log.Debug("DoGetAllDevices process start");
+            JSONResponse objJSONResponse = new JSONResponse();
+            IEnumerable<DeviceBackendVM> lstObj = null;
+            try
+            {
+                DataTable dt = _IDeviceCore.DoDeleteDeviceDetails(ref str_catchexception, deviceRequest);
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    objJSONResponse.status = true;
+                    objJSONResponse.jsondata = JsonConvert.SerializeObject(dt);
+
+                }
+                else
+                {
+                    objJSONResponse.status = false;
+                }
+
+                if (str_catchexception.Trim() != string.Empty)
+                {
+                    _log.Error($"DoGetAllDevices  done with exception -  {str_catchexception}");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error($"DoGetAllDevices  has an exception - { ex.Message}");
+            }
+            finally
+            {
+                _log.Debug("DoGetAllDevices process end");
+            }
+
+
+            return objJSONResponse;
+        }
     }
 }
